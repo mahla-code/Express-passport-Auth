@@ -1,10 +1,11 @@
 {
-  "name": "passport(mini-project)",
+  "name": "passport-mini-project",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon node app.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
@@ -19,8 +20,10 @@
     "express-flash": "^0.0.2",
     "express-session": "^1.18.2",
     "mongoose": "^8.19.3",
-    "nodemon": "^3.1.11",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
   }
 }

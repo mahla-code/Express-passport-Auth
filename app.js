@@ -1,10 +1,10 @@
 const express = require('express');
 require('dotenv').config()
-const expresslayputs = require('express-ejs-layouts');
+const expressLayouts = require('express-ejs-layouts');
 const { default: mongoose } = require('mongoose');
 const Allroutes=require('./routes/index')
 const flash=require('express-flash');
-const seesion=require('express-session');
+const session=require('express-session');
 const { errorHandler, notFoundError } = require('./error.handling');
 const passport = require('passport');
 const { passportInit } = require('./passport.config');
@@ -19,11 +19,11 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(flash())
 //setup layout
-app.use(expresslayputs);
+app.use(expressLayouts);
 app.set('view engine','ejs')
 app.set('layout','./layout/main.ejs')
 //set up session
-app.use(seesion({
+app.use(session({
     secret:process.env.SESSION_SECRET,
     resave:false,
     saveUninitialized:false
