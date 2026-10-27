@@ -1,13 +1,13 @@
 function notFoundError(req,res,next){
-    res.send({
+    res.status(404).send({
         status:404,
-        message:'not found page'
+        message:'page not found'
     })
 }
 function errorHandler(err,req,res,next){
     const status = err?.status ?? err?.statusCode?? 500
-    res.send({
-        statusCode: status,
+    res.status(status).send({
+        status,
         message: err?.message ?? "internalServerError"
     })
 }
