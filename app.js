@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config()
 const expresslayputs = require('express-ejs-layouts');
 const { default: mongoose } = require('mongoose');
 const Allroutes=require('./routes/index')
@@ -8,7 +9,7 @@ const { errorHandler, notFoundError } = require('./error.handling');
 const passport = require('passport');
 const { passportInit } = require('./passport.config');
 const app=express();
-mongoose.connect("mongodb://localhost:27017/passport-ejs").then(()=>{
+mongoose.connect(process.env.DB_URL).then(()=>{
  console.log('connected to db');
 }).catch((err)=>{
     console.log(err);
@@ -23,7 +24,7 @@ app.set('view engine','ejs')
 app.set('layout','./layout/main.ejs')
 //set up session
 app.use(seesion({
-    secret:'secret-key',
+    secret:process.env.SESSION_SECRET,
     resave:false,
     saveUninitialized:false
 }))
@@ -34,8 +35,8 @@ app.use(passport.session());
 
 //Routers
 app.use(Allroutes(passport))
-app.use(errorHandler);
 app.use(notFoundError)
+app.use(errorHandler);
 const PORT=process.env.PORT ||3000
 // set up express server
 app.listen(PORT,()=>{
