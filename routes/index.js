@@ -16,7 +16,7 @@ function initRoutes(passport) {
         const user = req.user;
         res.render("profile", {title: "profile", user})
     })
-    router.get("/logout", checkAuthentication, (req, res,next) => {
+    router.post("/logout", checkAuthentication, (req, res,next) => {
         req.logOut({keepSessionInfo: false}, (err) => {
             if(err) return next(err);
             res.redirect("/login")
